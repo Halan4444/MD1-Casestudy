@@ -213,7 +213,7 @@ function handleBeams() {
 }
 
 //defenders
-let numberOfResources = 400;
+let numberOfResources = 500;
 
 //making types of defenders
 const defender1 = new Image();
