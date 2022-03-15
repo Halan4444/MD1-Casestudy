@@ -26,7 +26,7 @@ let chosenDefender = 1;
 //attackers coming from the right side to defeat defenders
 const enemies = [];
 let enemyPosition = [];
-let enemy__interval = 90;
+let enemy__interval = 85;
 
 //handling game stats
  gameOver = false;
@@ -133,13 +133,13 @@ class Beams {
     for (let i = 0; i < defenders.length; i++) {
       if (defenders[i].chosenDefender === 1) {
         this.x += this.speed;
-      } else if (defenders.length > 2 ) {
+      } else if (defenders.length > 5 ) {
         this.x += this.speed * 2;
-      } else if (defenders.length > 10 ) {
+      } else if (defenders.length > 15 ) {
         this.x += this.speed * 3;
-        this.power += 1
-      }else if (defenders.length > 25 ) {
-        this.x += this.speed * 10;
+        this.power += 0.5
+      }else if (defenders.length > 30 ) {
+        this.x += this.speed * 5;
         this.power += 2
       }
       else if (defenders[i].chosenDefender === 2) {
