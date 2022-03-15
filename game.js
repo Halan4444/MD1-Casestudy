@@ -89,7 +89,7 @@ function gridpush() {
       Grid.push(new Cell(x, y));
     }
 }
-gridpush();
+//gridpush();
 
 function grid__generate() {
   for (i = 0; i < Grid.length; i++) Grid[i].draw();
@@ -610,11 +610,9 @@ gameboard.addEventListener("click", function () {
 
   function main__animation() {
     //to update ControlBar and grid after every change
-
     ctx.clearRect(0, 0, gameboard.width, gameboard.height);
     ctx.fillStyle = "rgba(255,255,255,0.5)";
     ctx.fillRect(0, 0, displayBar.width, displayBar.height);
-
     grid__generate();
     handleDefenders();
     handleResources();
