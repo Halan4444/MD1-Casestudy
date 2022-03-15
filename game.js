@@ -26,7 +26,7 @@ let chosenDefender = 1;
 //attackers coming from the right side to defeat defenders
 const enemies = [];
 let enemyPosition = [];
-let enemy__interval = 70;
+let enemy__interval = 90;
 
 //handling game stats
  gameOver = false;
