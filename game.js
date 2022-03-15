@@ -449,7 +449,7 @@ function enemy() {
     }
     //lose();
     if (enemies[i].health <= 0) {
-      let earnedResources = enemies[i].maxHealth / 20;
+      let earnedResources = enemies[i].maxHealth / 40;
       messages.push(new message("+ " + earnedResources, 250, 20, 20, "gold"));
       messages.push(
           new message(
@@ -474,7 +474,7 @@ function enemy() {
     enemies.push(new Enemy(verticalPosition));
     enemyPosition.push(verticalPosition);
     if(score>win_score/3 && numberOfResources> 200) {
-      numberOfResources = 200;
+      numberOfResources = 220;
       if (enemy__interval > 30) enemy__interval -= 50;
     }
   }
