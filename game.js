@@ -29,7 +29,7 @@ let enemyPosition = [];
 let enemy__interval = 85;
 
 //handling game stats
- gameOver = false;
+gameOver = false;
 let score = 0;
 const win_score = 1000;
 
@@ -98,12 +98,12 @@ function grid__generate() {
 
 function test__collision(first, second) {
   if (
-    !(
-      first.x > second.x + second.width ||
-      first.x + first.width < second.x ||
-      first.y > second.y + second.height ||
-      first.y + first.height < second.y
-    )
+      !(
+          first.x > second.x + second.width ||
+          first.x + first.width < second.x ||
+          first.y > second.y + second.height ||
+          first.y + first.height < second.y
+      )
   ) {
     return true;
   }
@@ -156,27 +156,27 @@ class Beams {
     //conditions to match ammo as per the chosen defender
     if (chosenDefender === 1) {
       ctx.drawImage(
-        beam1,
-        this.animationX * this.animationwidth,
-        0,
-        this.animationwidth,
-        this.animationheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height
+          beam1,
+          this.animationX * this.animationwidth,
+          0,
+          this.animationwidth,
+          this.animationheight,
+          this.x,
+          this.y,
+          this.width,
+          this.height
       );
     } else if (chosenDefender === 2) {
       ctx.drawImage(
-        beam2,
-        this.animationX * this.animationwidth,
-        0,
-        this.animationwidth,
-        this.animationheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height
+          beam2,
+          this.animationX * this.animationwidth,
+          0,
+          this.animationwidth,
+          this.animationheight,
+          this.x,
+          this.y,
+          this.width,
+          this.height
       );
     }
   }
@@ -246,27 +246,27 @@ class defender {
     // ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
     if (this.chosenDefender === 1) {
       ctx.drawImage(
-        defender1,
-        this.animationX * this.animationwidth,
-        0,
-        this.animationwidth,
-        this.animationheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height
+          defender1,
+          this.animationX * this.animationwidth,
+          0,
+          this.animationwidth,
+          this.animationheight,
+          this.x,
+          this.y,
+          this.width,
+          this.height
       );
     } else if (this.chosenDefender === 2) {
       ctx.drawImage(
-        defender2,
-        this.animationX * this.animationwidth,
-        0,
-        this.animationwidth,
-        this.animationheight,
-        this.x,
-        this.y,
-        this.width,
-        this.height
+          defender2,
+          this.animationX * this.animationwidth,
+          0,
+          this.animationwidth,
+          this.animationheight,
+          this.x,
+          this.y,
+          this.width,
+          this.height
       );
     }
   }
@@ -397,7 +397,7 @@ class Enemy {
     // this.speed = Math.random() * 0.3 + 0.3;
     this.speed = Math.random() * 0.3 + 0.2;
     this.movement = this.speed;
-    this.health = 160;
+    this.health = Math.random() *100+100;
     this.maxHealth = this.health;
     this.EnemyType = EnemyTypes[Math.floor(Math.random() * EnemyTypes.length)];
     this.animationX = 0;
@@ -417,21 +417,21 @@ class Enemy {
     }
   }
   draw() {
-    // ctx.fillStyle = "red"; Khối cắt của Enemy
-    // ctx.fillRect(this.x, this.y, this.width, this.height);
-    // ctx.fillStyle = "black";
-    // ctx.font = "30px arial";
-    //  ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
+    ctx.fillStyle = "red";;
+    ctx.fillRect(this.x+35, this.y-10, this.width/3+this.health/10, this.height/12);
+    ctx.fillStyle = "white";
+    ctx.font = "20px arial";
+     ctx.fillText(Math.floor(this.health), this.x + 42, this.y-20);
     ctx.drawImage(
-      this.EnemyType,
-      this.animationX * this.animationwidth,
-      0,
-      this.animationwidth,
-      this.animationheight,
-      this.x,
-      this.y,
-      this.width,
-      this.height
+        this.EnemyType,
+        this.animationX * this.animationwidth,
+        0,
+        this.animationwidth,
+        this.animationheight,
+        this.x,
+        this.y,
+        this.width,
+        this.height
     );
   }
 }
@@ -470,7 +470,7 @@ function enemy() {
   }
   if (gridcount % enemy__interval === 0 && score < win_score) {
     let verticalPosition =
-      Math.floor(Math.random() * 5 + 1) * cellSize + cellGapping;
+        Math.floor(Math.random() * 5 + 1) * cellSize + cellGapping;
     enemies.push(new Enemy(verticalPosition));
     enemyPosition.push(verticalPosition);
     if(score>win_score/3 && numberOfResources> 200) {
@@ -511,23 +511,23 @@ function handleResources() {
   for (let i = 0; i < resources.length; i++) {
     resources[i].draw();
     if (
-      resources[i] &&
-      mouse.x &&
-      mouse.y &&
-      test__collision(resources[i], mouse)
+        resources[i] &&
+        mouse.x &&
+        mouse.y &&
+        test__collision(resources[i], mouse)
     ) {
       numberOfResources += resources[i].value;
       messages.push(
-        new message(
-          "+ " + resources[i].value,
-          resources[i].x,
-          resources[i].y,
-          20,
-          "black"
-        )
+          new message(
+              "+ " + resources[i].value,
+              resources[i].x,
+              resources[i].y,
+              20,
+              "black"
+          )
       );
       messages.push(
-        new message("+ " + resources[i].value, 300, 55, 20, "gold")
+          new message("+ " + resources[i].value, 300, 55, 20, "gold")
       );
       resources.splice(i, 1);
       i--;
@@ -603,27 +603,27 @@ gameboard.addEventListener("click", function () {
   }
   else {
     messages.push(
-      new message("Need more Resources", mouse.x, mouse.y, 20, "blue")
+        new message("Need more Resources", mouse.x, mouse.y, 20, "blue")
     );
   }
 });
 
-  function main__animation() {
-    //to update ControlBar and grid after every change
-    ctx.clearRect(0, 0, gameboard.width, gameboard.height);
-    ctx.fillStyle = "rgba(255,255,255,0.5)";
-    ctx.fillRect(0, 0, displayBar.width, displayBar.height);
-    grid__generate();
-    handleDefenders();
-    handleResources();
-    handleBeams();
-    enemy();
-    selectDefender();
-    gameStatus();
-    handlemessages();
-    gridcount++;
-    if (!gameOver) requestAnimationFrame(main__animation);
-  }
+function main__animation() {
+  //to update ControlBar and grid after every change
+  ctx.clearRect(0, 0, gameboard.width, gameboard.height);
+  ctx.fillStyle = "rgba(255,255,255,0.5)";
+  ctx.fillRect(0, 0, displayBar.width, displayBar.height);
+  grid__generate();
+  handleDefenders();
+  handleResources();
+  handleBeams();
+  enemy();
+  selectDefender();
+  gameStatus();
+  handlemessages();
+  gridcount++;
+  if (!gameOver) requestAnimationFrame(main__animation);
+}
 window.addEventListener('resize', ()=>{
   gameboardposition = gameboard.getBoundingClientRect();
 });
