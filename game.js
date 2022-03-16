@@ -137,7 +137,7 @@ class Beams {
         this.x += this.speed * 2;
       } else if (defenders.length > 15 ) {
         this.x += this.speed * 3;
-        this.power += 0.5
+        this.power += 1
       }else if (defenders.length > 30 ) {
         this.x += this.speed * 5;
         this.power += 2
