@@ -397,7 +397,7 @@ class Enemy {
     // this.speed = Math.random() * 0.3 + 0.3;
     this.speed = Math.random() * 0.3 + 0.2;
     this.movement = this.speed;
-    this.health = Math.random() *100+100;
+    this.health = Math.floor(Math.random() *100+100);
     this.maxHealth = this.health;
     this.EnemyType = EnemyTypes[Math.floor(Math.random() * EnemyTypes.length)];
     this.animationX = 0;
@@ -407,7 +407,6 @@ class Enemy {
     this.animationwidth = 128;
     this.animationheight = 128;
   }
-
   change1() {
     console.log(this.x);
     this.x -= this.movement;
@@ -417,11 +416,12 @@ class Enemy {
     }
   }
   draw() {
-    ctx.fillStyle = "red";;
-    ctx.fillRect(this.x+35, this.y-10, this.width/3+this.health/10, this.height/12);
+    ctx.fillStyle = "red";
+    ctx.fillRect(this.x+35, this.y-10, this.health/1.5, this.height/18);
+    ctx.strokeRect(this.x+35, this.y-10, this.width/3+50, this.height/18);
     ctx.fillStyle = "white";
     ctx.font = "20px arial";
-     ctx.fillText(Math.floor(this.health), this.x + 42, this.y-20);
+    ctx.fillText(Math.floor(this.health), this.x + 42, this.y-20);
     ctx.drawImage(
         this.EnemyType,
         this.animationX * this.animationwidth,
@@ -433,7 +433,9 @@ class Enemy {
         this.width,
         this.height
     );
+    ctx.closePath();
   }
+
 }
 let counter = 0;
 
@@ -562,8 +564,8 @@ function handleDefenders() {
 function gameStatus() {
   ctx.fillStyle = "black";
   ctx.font = "30px arial";
-  ctx.fillText("Score: " + score, 170, 40);
-  ctx.fillText("Resources: " + numberOfResources, 170, 80);
+  ctx.fillText("Score: " + score.toFixed(0), 170, 40);
+  ctx.fillText("Resources: " + numberOfResources.toFixed(0), 170, 80);
   if (gameOver) {
     fillStyle = "black";
     ctx.font = "90px arial";
